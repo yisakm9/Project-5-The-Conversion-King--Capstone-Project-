@@ -16,7 +16,7 @@ module "security_groups" {
   project_name = var.project_name
   environment  = var.environment
   vpc_id       = module.vpc.vpc_id
-  # We can accept  the default app_port of 8080
+  # We can accept the default app_port of 8080
 }
 
 module "database" {
