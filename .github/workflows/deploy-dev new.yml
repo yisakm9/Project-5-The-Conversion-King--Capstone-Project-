@@ -51,7 +51,7 @@ jobs:
 
       - name: Terraform Plan
         id: pla
-        run: terraform force-unlock 732421f8-353f-ddff-7191-2e52acf8fb22
+        run: terraform force-unlock --force 732421f8-353f-ddff-7191-2e52acf8fb22
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -out=tfplan
