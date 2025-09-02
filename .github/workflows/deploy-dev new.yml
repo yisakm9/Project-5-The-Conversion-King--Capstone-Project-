@@ -27,7 +27,7 @@ jobs:
   terraform-plan:
     name: 'Terraform Plan & Analysis'
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' # Only run this job for Pull Requests
+    if: github.event_name == 'push' && github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
 
     defaults:
       run:
