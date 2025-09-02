@@ -3,13 +3,13 @@ name: "Deploy Dev Infrastructure"
 # 1. Controls when the action will run.
 on:
   # Triggers the workflow on push events but only for the "main" branch
-  push:
-    branches:
-      - main
-    paths:
-      - "environments/dev/**"
-      - "modules/**"
-      - "src/**"
+  #push:
+    #branches:
+    #  - main
+   # paths:
+  #    - "environments/dev/**"
+ #     - "modules/**"
+#      - "src/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
