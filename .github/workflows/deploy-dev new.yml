@@ -49,7 +49,7 @@ jobs:
         id: validate
         run: terraform validate -no-color
 
-       #- name: Terraform unlock
+       #- name: Terraform unlock for stuck state
         #id: unlock
         #run: terraform force-unlock --force 732421f8-353f-ddff-7191-2e52acf8fb22
       - name: Terraform Plan
