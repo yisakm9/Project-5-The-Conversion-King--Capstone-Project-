@@ -35,7 +35,7 @@ variable "db_engine" {
 variable "db_engine_version" {
   description = "The database engine version."
   type        = string
-  default     = "14.6"
+  default     = "14.19"
 }
 
 variable "db_allocated_storage" {
