@@ -28,7 +28,7 @@ variable "alb_security_group_id" {
 variable "app_port" {
   description = "The port the application listens on (for the target group)."
   type        = number
-  default     = 80
+  default     = 8080
 }
 
 variable "autoscaling_group_name" {
