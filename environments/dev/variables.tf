@@ -35,3 +35,4 @@ variable "db_allocated_storage" {
   type        = number
   default     = 20
 }
+
