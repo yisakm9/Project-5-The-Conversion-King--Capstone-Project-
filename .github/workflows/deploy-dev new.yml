@@ -137,6 +137,14 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-
+      - name: Safety Check
+        id: safety_check
+        run: |
+          if [ "${{ github.event.inputs.confirmation }}" == "${CONFIRMATION_PHRASE}" ]; then
+            echo "Confirmation matches. Proceeding with deployment."
+          else
+            echo "Error: Confirmation phrase does not match. Expected '${CONFIRMATION_PHRASE}' but got '${{ github.event.inputs.confirmation }}'."
+            exit 1
+          fi
       - name: Terraform Apply
         run: terraform apply -auto-approve
