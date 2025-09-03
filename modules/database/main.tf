@@ -37,7 +37,7 @@ resource "aws_db_subnet_group" "main" {
 resource "aws_db_instance" "main" {
   identifier             = "${var.project_name}-db-${var.environment}"
   engine                 = var.db_engine
-  engine_version         = data.aws_rds_engine_version.postgres.engine_version # <-- Use the version from the data source
+  engine_version         = data.aws_rds_engine_version.postgres.version # <-- Use the version from the data source
   instance_class         = var.db_instance_class
   allocated_storage      = var.db_allocated_storage
   storage_type           = "gp2"
