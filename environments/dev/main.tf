@@ -63,3 +63,16 @@ module "autoscaling" {
   max_size         = 2
   desired_capacity = 1
 }
+
+module "alb" {
+  source = "../../modules/alb"
+
+  project_name           = var.project_name
+  environment            = var.environment
+  vpc_id                 = module.vpc.vpc_id
+  public_subnet_ids      = module.vpc.public_subnet_ids
+  alb_security_group_id  = module.security_groups.alb_security_group_id
+  autoscaling_group_name = module.autoscaling.autoscaling_group_name
+
+  # The app_port defaults to 8080, which matches our SG module, so we don't need to set it.
+}

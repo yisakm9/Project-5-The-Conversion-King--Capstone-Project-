@@ -20,8 +20,18 @@ output "vpc_id" {
   value       = module.vpc.vpc_id
 }
 
-# We will add the ALB DNS name here in the next step
-# output "application_url" {
-#   description = "The public URL of the Application Load Balancer."
-#   value       = module.alb.alb_dns_name
-# }
+
+# environments/dev/outputs.tf
+
+output "database_endpoint" {
+  description = "The connection endpoint for the RDS database instance."
+  value       = module.database.db_instance_endpoint
+}
+
+# ... (other outputs) ...
+
+# UNCOMMENT THIS OUTPUT
+output "application_url" {
+  description = "The public URL of the Application Load Balancer."
+  value       = "http://${module.alb.alb_dns_name}"
+}
