@@ -32,7 +32,7 @@ variable "db_engine" {
   default     = "postgres"
 }
 
-variable "db_engine_version" {
+variable "db_major_engine_version" {
   description = "The database engine version."
   type        = string
   default     = "14.19"

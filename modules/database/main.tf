@@ -1,4 +1,11 @@
 # modules/database/main.tf
+# This data source looks up the latest available version for the given engine and major version
+data "aws_rds_engine_version" "postgres" {
+  engine  = var.db_engine
+  version = var.db_major_engine_version # e.g., "14.19"
+}
+
+
 resource "random_password" "master" {
   length  = 16
   special = true
@@ -30,7 +37,7 @@ resource "aws_db_subnet_group" "main" {
 resource "aws_db_instance" "main" {
   identifier             = "${var.project_name}-db-${var.environment}"
   engine                 = var.db_engine
-  engine_version         = var.db_engine_version
+  engine_version         = data.aws_rds_engine_version.postgres.engine_version # <-- Use the version from the data source
   instance_class         = var.db_instance_class
   allocated_storage      = var.db_allocated_storage
   storage_type           = "gp2"
