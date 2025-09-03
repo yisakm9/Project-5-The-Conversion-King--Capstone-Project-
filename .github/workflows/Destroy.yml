@@ -10,11 +10,10 @@ on:
         required: true
         default: 'do-not-destroy'
 
-# --- ADD THIS ENTIRE BLOCK ---
+
 permissions:
   id-token: write  # Required for OIDC to AWS
   contents: read   # Required for the actions/checkout step
-# -----------------------------
 
 jobs:
   terraform-destroy:
@@ -37,8 +36,7 @@ jobs:
           role-to-assume: arn:aws:iam::456202167790:role/githubaction # YOUR IAM ROLE ARN
           aws-region: us-east-1
 
-      # ... (rest of the steps are correct) ...
-      
+            
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         
