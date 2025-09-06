@@ -10,7 +10,7 @@ resource "random_password" "master" {
   length  = 16
   special = true
   # Do not include characters that must be escaped in shell scripts
-  override_special = "!#%&()*+,-./:;<=>?@[]^_`{|}~"
+  override_special = "!#%&()*+,-.:;<=>?[]^_`{|}~"
 }
 resource "aws_secretsmanager_secret" "rds_credentials" {
   name = "${var.project_name}-a${var.environment}/rds-master-credentials"
