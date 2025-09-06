@@ -59,3 +59,44 @@ resource "aws_route_table_association" "public" {
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
 }
+
+# 1. Allocate an Elastic IP for the NAT Gateway
+resource "aws_eip" "nat" {
+  domain = "vpc"
+  tags = {
+    Name = "${var.project_name}-nat-eip-${var.environment}"
+  }
+}
+
+# 2. Create the NAT Gateway in a public subnet
+resource "aws_nat_gateway" "main" {
+  # Important: NAT Gateway must be in a public subnet with an IGW route
+  subnet_id     = aws_subnet.public[0].id
+  allocation_id = aws_eip.nat.id
+
+  tags = {
+    Name = "${var.project_name}-nat-gw-${var.environment}"
+  }
+}
+
+# 3. Create a new Route Table for the private subnets
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  # Add a route for all internet-bound traffic (0.0.0.0/0) to the NAT Gateway
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.main.id
+  }
+
+  tags = {
+    Name = "${var.project_name}-private-rt-${var.environment}"
+  }
+}
+
+# 4. Associate the new private route table with your private subnets
+resource "aws_route_table_association" "private" {
+  count          = length(aws_subnet.private)
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private.id
+}
