@@ -13,7 +13,7 @@ resource "random_password" "master" {
   override_special = "!#%&()*+,-.:;<=>?[]^_`{|}~"
 }
 resource "aws_secretsmanager_secret" "rds_credentials" {
-  name = "${var.project_name}-a${var.environment}/rds-master-credentials"
+  name = "${var.project_name}-ab${var.environment}/rds-master-credentials"
   tags = {
     Project     = var.project_name
     Environment = var.environment

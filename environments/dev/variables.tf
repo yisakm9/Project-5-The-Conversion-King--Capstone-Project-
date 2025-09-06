@@ -21,7 +21,7 @@ variable "environment" {
 variable "instance_type_dev" {
   description = "The EC2 instance type to use for the dev environment."
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "db_instance_class_dev" {
@@ -39,7 +39,7 @@ variable "db_allocated_storage" {
 variable "db_skip_final_snapshot" {
   description = "Set to true to allow easy destruction of the dev database without a snapshot."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "min_size" {
