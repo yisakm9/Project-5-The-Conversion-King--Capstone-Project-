@@ -28,7 +28,7 @@ variable "instance_profile_name" {
 variable "instance_type" {
   description = "The EC2 instance type for the application servers."
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "min_size" {
