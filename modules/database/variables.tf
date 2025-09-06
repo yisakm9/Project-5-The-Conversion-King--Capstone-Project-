@@ -49,3 +49,9 @@ variable "db_username" {
   type        = string
   default     = "masteruser"
 }
+
+variable "skip_final_snapshot" {
+  description = "Determines whether a final DB snapshot is created before the DB instance is deleted."
+  type        = bool
+  default     = false #Safer default for production
+}

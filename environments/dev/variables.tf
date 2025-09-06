@@ -36,3 +36,26 @@ variable "db_allocated_storage" {
   default     = 20
 }
 
+variable "db_skip_final_snapshot" {
+  description = "Set to true to allow easy destruction of the dev database without a snapshot."
+  type        = bool
+  default     = false
+}
+
+variable "min_size" {
+  description = "The minimum number of instances in the Auto Scaling Group."
+  type        = number
+  default     = 1
+}
+
+variable "max_size" {
+  description = "The maximum number of instances in the Auto Scaling Group."
+  type        = number
+  default     = 3
+}
+
+variable "desired_capacity" {
+  description = "The desired number of instances in the Auto Scaling Group."
+  type        = number
+  default     = 1
+}

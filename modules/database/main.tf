@@ -46,7 +46,7 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [var.rds_security_group_id]
   publicly_accessible    = false
-  skip_final_snapshot    = true # Set to false in production
+  skip_final_snapshot    = var.skip_final_snapshot # Set to false in production
   tags = {
     Name = "${var.project_name}-db-${var.environment}"
   }

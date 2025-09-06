@@ -48,3 +48,9 @@ variable "desired_capacity" {
   type        = number
   default     = 1
 }
+
+variable "app_port" {
+  description = "The port the application listens on (for the target group)."
+  type        = number
+  default     = 80
+}

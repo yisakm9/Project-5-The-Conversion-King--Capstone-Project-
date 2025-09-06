@@ -28,9 +28,11 @@ resource "aws_launch_template" "main" {
               #!/bin/bash
               yum update -y
               yum install -y httpd
+              # Set the Listen port to the one specified by our variable
+              sed -i "s/Listen 80/Listen ${var.app_port}/" /etc/httpd/conf/httpd.conf
               systemctl start httpd
               systemctl enable httpd
-              echo "<h1>Hello from Conversion King Instance</h1>" > /var/www/html/index.html
+              echo "<h1>Hello from Conversion King Instance on port ${var.app_port}</h1>" > /var/www/html/index.html
               EOF
   )
 

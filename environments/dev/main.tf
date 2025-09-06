@@ -26,7 +26,7 @@ module "database" {
   environment           = var.environment
   private_subnet_ids    = module.vpc.private_subnet_ids
   rds_security_group_id = module.security_groups.rds_security_group_id
-
+  skip_final_snapshot = var.db_skip_final_snapshot
   # For dev, we can use smaller, cheaper instance types
   db_instance_class    = var.db_instance_class_dev
   db_allocated_storage = var.db_allocated_storage
@@ -59,9 +59,9 @@ module "autoscaling" {
 
   # Use the environment-specific variable
   instance_type    = var.instance_type_dev
-  min_size         = 1
-  max_size         = 2
-  desired_capacity = 1
+  min_size         = var.min_size
+  max_size         = var.max_size
+  desired_capacity = var.desired_capacity
 }
 
 module "alb" {
